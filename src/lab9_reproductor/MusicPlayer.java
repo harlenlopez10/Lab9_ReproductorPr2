@@ -120,6 +120,7 @@ public class MusicPlayer {
             clip.setMicrosecondPosition(0); // Reiniciar la posición de reproducción al detener la canción
             currentMicroseconds = 0; // También reiniciar currentMicroseconds
             isPlaying = false;
+            wasPaused = false;
         }
     }
 
@@ -132,21 +133,7 @@ public class MusicPlayer {
         }
     }
 
-    public void nextSong() {
-        if (currentSongIndex < playlist.size() - 1) {
-            currentSongIndex++;
-            stop();
-            play();
-        }
-    }
-
-    public void previousSong() {
-        if (currentSongIndex > 0) {
-            currentSongIndex--;
-            stop();
-            play();
-        }
-    }
+    
     
     public long getCurrentMicroseconds() {
         return currentMicroseconds;

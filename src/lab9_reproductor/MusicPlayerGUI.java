@@ -37,14 +37,14 @@ import javax.swing.filechooser.FileSystemView;
  * @author harle
  */
 public class MusicPlayerGUI extends JFrame {
+
     private MusicPlayer player;
     private JButton playButton;
     private JButton stopButton;
     private JButton pauseButton;
     private JButton addButton;
     private JButton selectButton;
-    private JButton nextButton;
-    private JButton previousButton;
+
     private JList<String> playlist;
     private DefaultListModel<String> listModel;
     private JProgressBar progressBar;
@@ -57,15 +57,13 @@ public class MusicPlayerGUI extends JFrame {
         player = new MusicPlayer();
         listModel = new DefaultListModel<>();
         playlist = new JList<>(listModel);
-        setLocationRelativeTo(null);
+        
 
         playButton = new JButton("Play");
         stopButton = new JButton("Stop");
         pauseButton = new JButton("Pause");
         addButton = new JButton("Add");
         selectButton = new JButton("Select");
-        nextButton = new JButton("Next");
-        previousButton = new JButton("Previous");
 
         playButton.addActionListener(e -> {
             int selectedIndex = playlist.getSelectedIndex();
@@ -131,9 +129,6 @@ public class MusicPlayerGUI extends JFrame {
             }
         });
 
-        nextButton.addActionListener(e -> player.nextSong());
-        previousButton.addActionListener(e -> player.previousSong());
-
         progressBar = new JProgressBar(0, 100);
         progressBar.setValue(0);
         progressBar.setStringPainted(true);
@@ -177,8 +172,10 @@ public class MusicPlayerGUI extends JFrame {
         controlPanel.add(pauseButton);
         controlPanel.add(addButton);
         controlPanel.add(selectButton);
-        controlPanel.add(nextButton);
-        controlPanel.add(previousButton);
+
+        controlPanel.setBackground(Color.DARK_GRAY);
+        progressBar.setBackground(Color.GRAY);
+        
 
         JPanel progressPanel = new JPanel();
         progressPanel.setLayout(new BorderLayout());
@@ -200,9 +197,11 @@ public class MusicPlayerGUI extends JFrame {
         getContentPane().add(controlPanel, BorderLayout.SOUTH);
         getContentPane().add(progressPanel, BorderLayout.NORTH);
 
-        setSize(600, 400); // Ajustar el tamaño de la ventana
+        setSize(1000, 600); // Ajustar el tamaño de la ventana
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        setLocationRelativeTo(null);
+
     }
 
     private void updateProgressBar() {
